@@ -1,0 +1,643 @@
+/* styles/main.css - Diseño minimalista y responsive */
+
+:root {
+    --primary: #2c3e50;
+    --secondary: #3498db;
+    --accent: #27ae60;
+    --light: #f8fafc;
+    --white: #ffffff;
+    --dark: #2d3748;
+    --gray: #718096;
+    --gray-light: #e2e8f0;
+    --danger: #e53e3e;
+    --warning: #ed8936;
+    
+    /* Sombras suaves */
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
+    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.15);
+    
+    /* Transiciones */
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Reset y base */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    background-color: var(--light);
+    color: var(--dark);
+    line-height: 1.6;
+    font-size: 16px;
+    min-height: 100vh;
+}
+
+/* Header */
+header {
+    background: var(--white);
+    border-bottom: 1px solid var(--gray-light);
+    padding: 2rem 1rem;
+    text-align: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    backdrop-filter: blur(10px);
+}
+
+header h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 0.5rem;
+    letter-spacing: -0.025em;
+}
+
+.subtitle {
+    color: var(--gray);
+    font-size: 1.1rem;
+    font-weight: 400;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Layout principal */
+main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+    min-height: calc(100vh - 200px);
+}
+
+/* Contenedor de búsqueda */
+.search-container {
+    background: var(--white);
+    border-radius: 12px;
+    padding: 2rem;
+    margin: 2rem auto;
+    box-shadow: var(--shadow-md);
+    max-width: 800px;
+}
+
+/* Opciones de ubicación */
+.location-options {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+}
+
+.location-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1rem;
+    border: 2px solid var(--gray-light);
+    background: var(--white);
+    color: var(--dark);
+    border-radius: 8px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: var(--transition);
+    text-decoration: none;
+}
+
+.location-btn:hover {
+    border-color: var(--secondary);
+    background: var(--secondary);
+    color: var(--white);
+    transform: translateY(-1px);
+}
+
+.location-btn:active {
+    transform: translateY(0);
+}
+
+.location-btn i {
+    font-style: normal;
+    font-size: 1rem;
+}
+
+/* Caja de búsqueda */
+.search-box {
+    display: flex;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+}
+
+#location-input {
+    flex: 1;
+    padding: 0.75rem 1rem;
+    border: 2px solid var(--gray-light);
+    border-radius: 8px;
+    font-size: 1rem;
+    background: var(--white);
+    transition: var(--transition);
+    outline: none;
+}
+
+#location-input:focus {
+    border-color: var(--secondary);
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+}
+
+#location-input::placeholder {
+    color: var(--gray);
+}
+
+#search-btn {
+    padding: 0.75rem 1.5rem;
+    background: var(--secondary);
+    color: var(--white);
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+    white-space: nowrap;
+}
+
+#search-btn:hover {
+    background: #2980b9;
+    transform: translateY(-1px);
+}
+
+#search-btn:active {
+    transform: translateY(0);
+}
+
+/* Filtros */
+.filters {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1rem;
+}
+
+.filters select {
+    padding: 0.75rem 1rem;
+    border: 2px solid var(--gray-light);
+    border-radius: 8px;
+    background: var(--white);
+    font-size: 0.875rem;
+    color: var(--dark);
+    cursor: pointer;
+    transition: var(--transition);
+    outline: none;
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23718096' stroke-width='2'%3E%3Cpolyline points='6,9 12,15 18,9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.75rem center;
+    background-size: 16px;
+    padding-right: 2.5rem;
+}
+
+.filters select:focus {
+    border-color: var(--secondary);
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+}
+
+/* Loading spinner */
+.loading-spinner {
+    border: 3px solid var(--gray-light);
+    border-radius: 50%;
+    border-top: 3px solid var(--secondary);
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+    margin: 2rem auto;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Contenedor de resultados */
+.results-container {
+    margin: 2rem auto;
+    max-width: 900px;
+}
+
+/* Tarjetas de gasolineras */
+.station-card {
+    background: var(--white);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--gray-light);
+    transition: var(--transition);
+}
+
+.station-card:hover {
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-2px);
+}
+
+.station-header h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--primary);
+    margin-bottom: 0.25rem;
+    line-height: 1.3;
+}
+
+.station-address {
+    color: var(--gray);
+    font-size: 0.875rem;
+    margin-bottom: 1rem;
+    line-height: 1.4;
+}
+
+/* Precio destacado */
+.price-highlight {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(135deg, var(--accent), #219a52);
+    color: var(--white);
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+.price-highlight .price {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--white);
+}
+
+/* Grid de precios */
+.price-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    background: var(--light);
+    border-radius: 8px;
+}
+
+.price-grid div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.875rem;
+    padding: 0.5rem 0;
+}
+
+.price-grid .price {
+    font-weight: 600;
+    color: var(--accent);
+}
+
+.price-grid .na {
+    color: var(--gray);
+    font-style: italic;
+    font-size: 0.8rem;
+}
+
+/* Footer de tarjeta */
+.station-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--gray-light);
+    font-size: 0.875rem;
+}
+
+.distance {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    font-weight: 600;
+    color: var(--secondary);
+}
+
+.distance::before {
+    content: "📍";
+    font-size: 0.75rem;
+}
+
+.update {
+    color: var(--gray);
+    font-size: 0.8rem;
+}
+
+.map-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: var(--primary);
+    color: var(--white);
+    text-decoration: none;
+    border-radius: 6px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    transition: var(--transition);
+}
+
+.map-link:hover {
+    background: #1a252f;
+    transform: translateY(-1px);
+}
+
+.map-link::after {
+    content: "↗";
+    font-size: 0.75rem;
+}
+
+/* Estados especiales */
+.no-results,
+.error {
+    text-align: center;
+    padding: 3rem 2rem;
+    background: var(--white);
+    border-radius: 12px;
+    box-shadow: var(--shadow-sm);
+    margin: 2rem auto;
+    max-width: 500px;
+}
+
+.no-results h3 {
+    color: var(--primary);
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.no-results p {
+    color: var(--gray);
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+.error {
+    border-left: 4px solid var(--danger);
+    background: #fff5f5;
+}
+
+.error h3 {
+    color: var(--danger);
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+}
+
+.error p {
+    color: #c53030;
+}
+
+/* Mensajes de éxito */
+.success {
+    background: #f0fff4;
+    border-left: 4px solid var(--accent);
+    color: #22543d;
+    padding: 1rem;
+    border-radius: 8px;
+    margin: 1rem 0;
+    font-size: 0.875rem;
+}
+
+/* Footer */
+footer {
+    background: var(--white);
+    border-top: 1px solid var(--gray-light);
+    padding: 2rem 1rem;
+    text-align: center;
+    margin-top: 4rem;
+    color: var(--gray);
+    font-size: 0.875rem;
+    line-height: 1.6;
+}
+
+footer p {
+    margin-bottom: 0.5rem;
+}
+
+/* Responsive Design */
+
+/* Tablets */
+@media (max-width: 768px) {
+    header {
+        padding: 1.5rem 1rem;
+    }
+    
+    header h1 {
+        font-size: 2rem;
+    }
+    
+    .subtitle {
+        font-size: 1rem;
+    }
+    
+    .search-container {
+        margin: 1rem auto;
+        padding: 1.5rem;
+    }
+    
+    .location-options {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.5rem;
+    }
+    
+    .location-btn {
+        padding: 0.625rem 0.75rem;
+        font-size: 0.8rem;
+    }
+    
+    .search-box {
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+    
+    #search-btn {
+        width: 100%;
+        padding: 0.875rem;
+    }
+    
+    .filters {
+        grid-template-columns: 1fr;
+        gap: 0.75rem;
+    }
+    
+    .station-card {
+        margin: 0 0 1rem 0;
+        padding: 1rem;
+    }
+    
+    .price-highlight {
+        flex-direction: column;
+        gap: 0.5rem;
+        text-align: center;
+        padding: 0.875rem;
+    }
+    
+    .price-highlight .price {
+        font-size: 1.25rem;
+    }
+    
+    .price-grid {
+        grid-template-columns: 1fr;
+        gap: 0.5rem;
+        padding: 0.75rem;
+    }
+    
+    .station-footer {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.75rem;
+    }
+    
+    .map-link {
+        text-align: center;
+        justify-content: center;
+    }
+}
+
+/* Móviles pequeños */
+@media (max-width: 480px) {
+    main {
+        padding: 0 0.75rem;
+    }
+    
+    header {
+        padding: 1rem 0.75rem;
+    }
+    
+    header h1 {
+        font-size: 1.75rem;
+    }
+    
+    .search-container {
+        padding: 1rem;
+        margin: 0.75rem auto;
+    }
+    
+    .location-options {
+        grid-template-columns: 1fr;
+    }
+    
+    .location-btn {
+        padding: 0.75rem;
+        font-size: 0.875rem;
+    }
+    
+    .station-card {
+        padding: 0.875rem;
+        border-radius: 8px;
+    }
+    
+    .station-header h3 {
+        font-size: 1.125rem;
+    }
+    
+    .price-highlight {
+        padding: 0.75rem;
+    }
+    
+    .price-grid {
+        padding: 0.625rem;
+        font-size: 0.8rem;
+    }
+    
+    .no-results,
+    .error {
+        padding: 2rem 1rem;
+        margin: 1rem 0;
+    }
+}
+
+/* Pantallas muy grandes */
+@media (min-width: 1400px) {
+    .search-container {
+        max-width: 900px;
+    }
+    
+    .results-container {
+        max-width: 1000px;
+    }
+    
+    .station-card {
+        padding: 2rem;
+    }
+    
+    .price-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+/* Animaciones suaves para la carga */
+.station-card,
+.search-container,
+.no-results,
+.error {
+    animation: fadeInUp 0.6s ease-out;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Estados de carga progresiva */
+.station-card.loading {
+    opacity: 0.7;
+    pointer-events: none;
+}
+
+/* Mejoras de accesibilidad */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* Modo oscuro (opcional) */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --light: #1a202c;
+        --white: #2d3748;
+        --dark: #f7fafc;
+        --gray: #a0aec0;
+        --gray-light: #4a5568;
+        --primary: #4299e1;
+    }
+    
+    body {
+        background-color: var(--light);
+        color: var(--dark);
+    }
+    
+    .search-container,
+    .station-card,
+    .no-results {
+        background: var(--white);
+        border-color: var(--gray-light);
+    }
+    
+    header {
+        background: var(--white);
+        border-color: var(--gray-light);
+    }
+}
