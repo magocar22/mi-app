@@ -5,99 +5,56 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gasolineras más Baratas</title>
     <link rel="stylesheet" href="styles/main.css">
-    
-    <style>
-        .search-box {
-            position: relative; /* Necesario para posicionar las sugerencias debajo */
-        }
-        .autocomplete-results {
-            position: absolute;
-            top: 100%; /* Justo debajo del input */
-            left: 0;
-            right: 0;
-            background: white;
-            border: 1px solid #ccc;
-            border-top: none;
-            border-radius: 0 0 8px 8px;
-            max-height: 200px;
-            overflow-y: auto;
-            z-index: 1000; /* Para que aparezca por encima de otros elementos */
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-        .autocomplete-item {
-            padding: 12px 15px;
-            cursor: pointer;
-            font-size: 0.9rem;
-        }
-        .autocomplete-item:hover {
-            background-color: #f0f0f0;
-        }
-        .search-feedback {
-            text-align: center;
-            margin-top: 20px;
-            padding: 10px;
-            background-color: #f8f9fa;
-            border-radius: 8px;
-            color: var(--gray);
-            font-style: italic;
-            font-size: 0.9rem;
-        }
-    </style>
 </head>
 <body>
     <header>
-        <h1>Gasolineras más Baratas</h1>
-        <p class="subtitle">Encuentra las gasolineras más cercanas con los mejores precios</p>
+        <h1>⛽ Gasolineras más Baratas</h1>
+        <p class="subtitle">Encuentra el combustible más barato cerca de ti</p>
     </header>
     
     <main>
         <section class="search-container">
             <div class="location-options">
-                <button id="geolocate-btn" class="location-btn">
-                    <i>📍</i> Usar mi ubicación
-                </button>
-                <button id="madrid-btn" class="location-btn">
-                    <i>🏙️</i> Madrid
-                </button>
-                <button id="barcelona-btn" class="location-btn">
-                    <i>🏙️</i> Barcelona
-                </button>
-                <button id="valencia-btn" class="location-btn">
-                    <i>🏙️</i> Valencia
-                </button>
-                <button id="sevilla-btn" class="location-btn">
-                    <i>🏙️</i> Sevilla
-                </button>
-                <button id="bilbao-btn" class="location-btn">
-                    <i>🏙️</i> Bilbao
+                <button id="geolocate-btn" class="location-btn location-btn--primary" aria-label="Usar mi ubicación actual para buscar gasolineras">
+                    <span class="btn-icon">📍</span>
+                    <span>Mi ubicación</span>
                 </button>
             </div>
             
             <div class="search-box">
-                <input type="text" id="location-input" placeholder="Introduce ciudad, dirección o CP" autocomplete="off">
+                <input type="text" id="location-input" placeholder="Ciudad, dirección o código postal" autocomplete="off" aria-label="Introduce una ciudad, dirección o código postal para buscar">
                 <div id="autocomplete-results" class="autocomplete-results"></div>
-                <button id="search-btn">Buscar</button>
+                <button id="search-btn" class="search-btn" aria-label="Buscar gasolineras por la ubicación introducida">
+                    <span>🔍 Buscar</span>
+                </button>
             </div>
             
             <div class="filters">
-                <select id="fuel-type">
-                    <option value="gasolina_95">Gasolina 95</option>
-                    <option value="gasolina_98">Gasolina 98</option>
-                    <option value="diesel">Diésel</option>
-                    <option value="diesel_premium">Diésel Premium</option>
-                </select>
+                <div class="filter-group">
+                    <label for="fuel-type" class="filter-label">🚛 Combustible</label>
+                    <select id="fuel-type" class="filter-select" aria-label="Seleccionar tipo de combustible">
+                        <option value="diesel" selected>Diésel</option>
+                        <option value="gasolina_95">Gasolina 95</option>
+                    </select>
+                </div>
                 
-                <select id="sort-by">
-                    <option value="distance">Ordenar por distancia</option>
-                    <option value="price">Ordenar por precio</option>
-                </select>
+                <div class="filter-group">
+                    <label for="sort-by" class="filter-label">📊 Ordenar por</label>
+                    <select id="sort-by" class="filter-select" aria-label="Ordenar resultados por precio o distancia">
+                        <option value="price" selected>Precio más barato</option>
+                        <option value="distance">Distancia</option>
+                    </select>
+                </div>
                 
-                <select id="radius">
-                    <option value="5">Radio: 5 km</option>
-                    <option value="10" selected>Radio: 10 km</option>
-                    <option value="20">Radio: 20 km</option>
-                    <option value="50">Radio: 50 km</option>
-                </select>
+                <div class="filter-group">
+                    <label for="radius" class="filter-label">📏 Radio búsqueda</label>
+                    <select id="radius" class="filter-select" aria-label="Establecer radio de búsqueda en kilómetros">
+                        <option value="5">5 km</option>
+                        <option value="10" selected>10 km</option>
+                        <option value="20">20 km</option>
+                        <option value="50">50 km</option>
+                    </select>
+                </div>
             </div>
             
             <div id="search-feedback" class="search-feedback" style="display: none;"></div>
@@ -106,12 +63,12 @@
         <div id="loading-indicator" class="loading-spinner" style="display: none;"></div>
         
         <section class="results-container" id="results-container">
-            </section>
+        </section>
     </main>
     
     <footer>
-        <p>Datos proporcionados por el Ministerio para la Transición Ecológica y el Reto Demográfico</p>
-        <p>Última actualización de la página: <span id="update-date"></span></p>
+        <p>📊 Datos oficiales del Ministerio para la Transición Ecológica</p>
+        <p>🕒 Última actualización: <span id="update-date"></span></p>
     </footer>
 
     <script type="module" src="scripts/geo.js"></script>
