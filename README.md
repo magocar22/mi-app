@@ -8,8 +8,6 @@ Geolocalización Automática: Encuentra gasolineras cerca de ti con un solo clic
 
 Búsqueda por Ubicación: Busca gasolineras introduciendo una dirección, ciudad o código postal.
 
-Sugerencias de Ciudades Populares: Accede rápidamente a resultados en Madrid, Barcelona, Valencia, Sevilla y Bilbao.
-
 Filtro por Tipo de Combustible: Elige entre diésel o gasolina 95.
 
 Ordenación Flexible: Ordena los resultados por distancia o por precio.
@@ -20,9 +18,11 @@ Información Detallada: Visualiza el nombre de la gasolinera, dirección, precio
 
 Acceso Directo a Mapas: Enlace integrado para navegar a la gasolinera seleccionada en Google Maps.
 
-Diseño Responsive: Interfaz adaptable a diferentes dispositivos (móviles, tablets y escritorios).
+Al final del listado de gasolineras se muestra un resumen de precios del listado.
 
-Guardado de Última Búsqueda: La aplicación recuerda tu última ubicación y filtros para una experiencia más rápida.
+Se resaltan las 3 gasolineras mas baratas.
+
+Diseño Responsive: Interfaz adaptable a diferentes dispositivos (móviles, tablets y escritorios).
 
 Modo Oscuro: Soporte para el modo oscuro del sistema operativo.
 
@@ -67,6 +67,8 @@ Para ejecutar esta aplicación localmente, sigue estos pasos:
 Clona o descarga el repositorio.
 
 Abre el archivo index.html en tu navegador web.
+
+También puedes acceder online en https://magocar22.github.io/mi-app-gasolineras/
 
 Nota: Debido a las restricciones de seguridad del navegador (CORS) y al uso de la API de geocodificación de Nominatim, es posible que algunas funcionalidades (especialmente la geolocalización y la búsqueda manual por dirección) funcionen mejor si la aplicación se sirve a través de un servidor web local (por ejemplo, con Live Server de VS Code o un simple python -m http.server en tu terminal).
 
